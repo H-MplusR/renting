@@ -16,14 +16,17 @@ class Login extends React.Component {
         this.setState({ password: e.target.value })
     }
 
+
+
+
     getUser() {
         axios.post('/api/renting/login', { username: this.state.username, password: this.state.password }).then(({ data }) => {
-
+             console.log('data from client ', data)
 
             if (data.length === 1) {
 
                 this.props.changeId(data[0]._id)
-                this.props.changeView('create')
+                this.props.changeView('search')
             }
 
 

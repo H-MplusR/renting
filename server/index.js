@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const Admin = require('../database-mongodb/Admin.js');
 const Host = require('../database-mongodb/Host.js');
 const Visitor = require('../database-mongodb/Visitor.js');
+const Announcement = require('../database-mongodb/Announcement.js');
 const app = express();
 const PORT = 3000;
 
@@ -12,6 +13,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // UNCOMMENT FOR REACT
 app.use(express.static(__dirname + '/../react-client/dist'));
+
+app.get('/api/renting/fetching', function(req,res){
+  Announcement.find().populate('Host').exec(function(err,data){
+    if(err){
+      throw err
+
+    }else{
+      res.send(data)
+    }
+  })
+})
+
 //login request
 app.post('/api/renting/login', function (req, res) {
   console.log("data from req:",req.body);

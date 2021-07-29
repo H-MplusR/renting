@@ -4,7 +4,7 @@ import $ from 'jquery';
 
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
-
+import Search from './components/Search.jsx';
 
 import axios from 'axios';
 
@@ -42,6 +42,9 @@ class App extends React.Component {
     
     }else if (view === 'signup') {
       return <Signup changeView={this.changeView} changeId={this.changeId.bind(this)} />
+      
+    }else if(view ==="search"){
+      return <Search changeView={this.changeView} changeId={this.changeId.bind(this)} />
     }
 
   }
